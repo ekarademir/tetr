@@ -149,6 +149,7 @@ function tetr(debug = false) {
     }, false);
 
     tcanvas.addEventListener("touchend", function(e) {
+        e.preventDefault();
         // console.log(e.changedTouches);
         let te = [e.changedTouches[0].screenX, e.changedTouches[0].screenY];
         // console.log(ts);
