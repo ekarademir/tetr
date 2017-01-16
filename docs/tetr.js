@@ -33,12 +33,16 @@ function tetr(debug = false) {
     var wHeight = window.innerHeight - 50;
     var wWidth = window.innerWidth - 50;
     // Block dimesions
-    var block = Math.min(wHeight, wWidth)/30;
+    var block = Math.min(wHeight, wWidth)/20;
 
     var height = 30*block;
     
     var width = 20*block;
-    var debugPadding = wWidth - width;
+
+    var debugPadding = 0*block;
+    if(debug === true) {
+        debugPadding = 10*block;
+    }
 
 
     // Setting up the canvas
@@ -48,13 +52,14 @@ function tetr(debug = false) {
     tcanvas.setAttribute("height", height);
 
     // setting up debug area
-    if(debug){
+    if(debug === true){
         tcanvas.setAttribute("width", width + debugPadding);
     }
 
     var ctx = tcanvas.getContext("2d");
 
     tetris.appendChild(tcanvas);
+
 
     var debugArea = document.createElement("p");
     tetris.appendChild(debugArea);
@@ -81,12 +86,14 @@ function tetr(debug = false) {
     // Game Setup
     var gameRectWidth = 12; // blocks
     var gameRectHeight = 28; // blocks
-    var gameX = 7;
+    var gameX = 6;
     var gameY = 1;
     var gameLevel = 1;
     var blockTime = 1000/gameLevel; 
     var moveAmount = 1;///blockTime;
     var lastMoveTime = tick.now();
+
+    var touchTolerance = 20;
 
     var gameScore = 0;
     var linePerLevel = 15;
@@ -131,12 +138,50 @@ function tetr(debug = false) {
         }
     }, false);
 
+    /**
+     * Touch Events
+     */
+
+    var ts = [0,0];
+    tcanvas.addEventListener("touchstart", function(e) {
+        // console.log(e.touches);
+        ts = [e.touches[0].screenX, e.touches[0].screenY];
+    }, false);
+
+    tcanvas.addEventListener("touchend", function(e) {
+        // console.log(e.changedTouches);
+        let te = [e.changedTouches[0].screenX, e.changedTouches[0].screenY];
+        // console.log(ts);
+        // console.log(te);
+        let dV = te[1] - ts[1];
+        let dH = te[0] - ts[0];
+        let adV = Math.abs(dV);
+        let adH = Math.abs(dH);
+        // console.log("dV " + dV + " dH " + dH);
+        if (dV > touchTolerance && adV > adH) {
+            // console.log("TOUCH DOWN");
+            currentTetromino.move("down", moveAmount, gamePanel);
+        } else if (dV < touchTolerance && adV > adH) {
+            // console.log("TOUCH UP");
+            currentTetromino.rotate(gamePanel);
+        } else if (dH > touchTolerance && adV < adH) {
+            // console.log("TOUCH RIGHT");
+            currentTetromino.move("right", moveAmount, gamePanel);
+        } else if (dH < touchTolerance && adV < adH) {
+            // console.log("TOUCH LEFT");
+            currentTetromino.move("left", moveAmount, gamePanel);
+        }
+
+        ts = [0,0];
+    }, false);
 
     /** Main animation loop *****************************************************************************/
     var drawInterval = window.setInterval(function(){
         if(gameOn) {
             let startTime = tick.now();
-            let msg = [];
+            // Debug messages
+            var msg = [];
+            
 
             /**********************************/
 
