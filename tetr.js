@@ -32,9 +32,10 @@ function tetr(debug = false) {
     // Settings
     var wHeight = window.innerHeight - 50;
     var wWidth = window.innerWidth - 50;
-    var height = wHeight;
     // Block dimesions
-    var block = height/30;
+    var block = Math.min(wHeight, wWidth)/30;
+
+    var height = 30*block;
     
     var width = 20*block;
     var debugPadding = wWidth - width;
@@ -82,14 +83,13 @@ function tetr(debug = false) {
     var gameRectHeight = 28; // blocks
     var gameX = 7;
     var gameY = 1;
-    var blockMoveRate = 1;
-    var blockTime = 1000/blockMoveRate; 
+    var gameLevel = 1;
+    var blockTime = 1000/gameLevel; 
     var moveAmount = 1;///blockTime;
     var lastMoveTime = tick.now();
 
     var gameScore = 0;
-    var gameLevel = 1;
-    var linePerLevel = 20;
+    var linePerLevel = 15;
 
     var gameOn = true;
 
@@ -227,8 +227,8 @@ function tetr(debug = false) {
             ctx.font = block+ "px monospace";
             ctx.fillText("SCORE", 2*block, 10*block);
             ctx.fillText(gameScore, 2*block, 11*block);
-            // ctx.fillText("LEVEL", 2*block, 13*block);
-            // ctx.fillText(gameLevel, 2*block, 14*block);
+            ctx.fillText("LEVEL", 2*block, 13*block);
+            ctx.fillText(gameLevel, 2*block, 14*block);
 
 
             // Moves down the current tetromino
@@ -288,8 +288,8 @@ function tetr(debug = false) {
                 panelBlocks = ePanelBlocks.concat(panelBlocks);
 
                 // update level
-                gameLevel = Math.floor(gameScore/linePerLevel);
-                blockMoveRate = gameLevel;
+                gameLevel = Math.floor(gameScore/linePerLevel)+1;
+                blockTime = 1000/gameLevel;
             }
 
             // draw panel blocks
