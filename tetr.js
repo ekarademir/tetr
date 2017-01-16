@@ -93,7 +93,7 @@ function tetr(debug = false) {
     var moveAmount = 1;///blockTime;
     var lastMoveTime = tick.now();
 
-    var touchTolerance = 20;
+    var touchTolerance = 50;
 
     var gameScore = 0;
     var linePerLevel = 15;
