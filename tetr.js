@@ -159,18 +159,22 @@ function tetr(debug = false) {
         let adV = Math.abs(dV);
         let adH = Math.abs(dH);
         // console.log("dV " + dV + " dH " + dH);
-        if (dV > touchTolerance && adV > adH) {
-            // console.log("TOUCH DOWN");
-            currentTetromino.move("down", moveAmount, gamePanel);
-        } else if (dV < touchTolerance && adV > adH) {
+        // if (dV > touchTolerance && adV > adH) {
+        //     // console.log("TOUCH DOWN");
+        //     currentTetromino.move("down", moveAmount, gamePanel);
+        // } else
+        if (dV < touchTolerance && adV > adH) {
             // console.log("TOUCH UP");
-            currentTetromino.rotate(gamePanel);
+            curentTetromino.rotate(gamePanel);
         } else if (dH > touchTolerance && adV < adH) {
             // console.log("TOUCH RIGHT");
             currentTetromino.move("right", moveAmount, gamePanel);
         } else if (dH < touchTolerance && adV < adH) {
             // console.log("TOUCH LEFT");
             currentTetromino.move("left", moveAmount, gamePanel);
+        } else {
+            // console.log("TOUCH DOWN");
+            currentTetromino.move("down", moveAmount, gamePanel);
         }
 
         ts = [0,0];
