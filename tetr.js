@@ -165,7 +165,7 @@ function tetr(debug = false) {
             currentTetromino.move("down", moveAmount, gamePanel);
         } else if (dV < touchTolerance && adV > adH) {
             // console.log("TOUCH UP");
-            curentTetromino.rotate(gamePanel);
+            currentTetromino.rotate(gamePanel);
         } else if (dH > touchTolerance && adV < adH) {
             // console.log("TOUCH RIGHT");
             currentTetromino.move("right", moveAmount, gamePanel);
