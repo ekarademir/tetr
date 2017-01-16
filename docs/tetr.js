@@ -145,6 +145,7 @@ function tetr(debug = false) {
     var ts = [0,0];
     tcanvas.addEventListener("touchstart", function(e) {
         // console.log(e.touches);
+        e.preventDefault();
         ts = [e.touches[0].screenX, e.touches[0].screenY];
     }, false);
 
