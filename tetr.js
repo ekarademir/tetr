@@ -33,7 +33,7 @@ function tetr(debug = false) {
     var wHeight = window.innerHeight - 50;
     var wWidth = window.innerWidth - 50;
     // Block dimesions
-    var block = Math.min(wHeight, wWidth)/20;
+    var block = Math.min(wHeight, wWidth)/30;
 
     var height = 30*block;
     
