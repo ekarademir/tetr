@@ -1,0 +1,27 @@
+{
+  "name": "tetr2",
+  "version": "0.0.1",
+  "description": "Second iteration of vanilla JS tetris clone.",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ekarademir/tetr.git"
+  },
+  "keywords": [
+    "tetris",
+    "clone",
+    "vanillajs"
+  ],
+  "author": "Ertugrul Karademir",
+  "license": "GPL-2.0",
+  "bugs": {
+    "url": "https://github.com/ekarademir/tetr/issues"
+  },
+  "homepage": "https://github.com/ekarademir/tetr#readme"
+}
