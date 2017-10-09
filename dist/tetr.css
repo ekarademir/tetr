@@ -49,3 +49,17 @@ table {
 
 /*## TETR PART #########################################*/
 
+body {
+	font-family: Arial, Helvetica, sans-serif;
+}
+
+h1 {
+	font-size: 400%;
+	letter-spacing: -0.06em;
+	font-weight: 800;
+}
+
+.main {
+	display: block;
+	height: 90vh;
+}

@@ -7,9 +7,9 @@
     "doc": "docs"
   },
   "scripts": {
-    "babel": "cp src/*.html dist/ & cp src/*.css dist/ & babel --presets es2015 src/index.js -o dist/tetr.dist.js",
+    "babel": "babel --presets es2015 src/index.js -o dist/tetr.dist.js",
     "start": "http-server dist/",
-    "webpack": "webpack"
+    "webpack": "cp src/*.html dist/ & cp src/*.css dist/ & webpack"
   },
   "repository": {
     "type": "git",

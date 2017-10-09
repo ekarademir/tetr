@@ -68,22 +68,77 @@
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
+
+
+var _game = __webpack_require__(1);
+
+var tetr = _interopRequireWildcard(_game);
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
+
+tetr.setup('.main'); /**
+                      * TETR - a browser based Tetris clone
+                         This program is free software: you can redistribute it and/or modify
+                         it under the terms of the GNU General Public License as published by
+                         the Free Software Foundation, either version 3 of the License, or
+                         (at your option) any later version.
+                     
+                         This program is distributed in the hope that it will be useful,
+                         but WITHOUT ANY WARRANTY; without even the implied warranty of
+                         MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+                         GNU General Public License for more details.
+                     
+                         You should have received a copy of the GNU General Public License
+                         along with this program.  If not, see <http://www.gnu.org/licenses/>.
+                      */
+
+/***/ }),
+/* 1 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
 /**
- * TETR - a browser based Tetris clone
-    This program is free software: you can redistribute it and/or modify
-    it under the terms of the GNU General Public License as published by
-    the Free Software Foundation, either version 3 of the License, or
-    (at your option) any later version.
-
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU General Public License for more details.
-
-    You should have received a copy of the GNU General Public License
-    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ * Adds game screen to given DOM element.
+ * @param {string} mainSelector DOM selector to insert game screen.
  */
 
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+var setup = exports.setup = function setup(mainSelector) {
+
+  var main = document.querySelector(mainSelector);
+
+  mainScreen(main);
+};
+
+/**
+ * Draw mainscreen
+ * @param {DOMElement} mainElement 
+ */
+var mainScreen = function mainScreen(mainElement) {
+
+  var svg = createSVGElement('svg');
+  svg.setAttributeNS(null, 'width', '100%');
+  svg.setAttributeNS(null, 'height', '100%');
+  svg.setAttributeNS(null, 'preserveAspectRatio', 'xMinYMin');
+  svg.setAttributeNS(null, 'viewBox', '400, 300, 400, 300');
+
+  mainElement.appendChild(svg);
+};
+
+/**
+ * Create an SVG element with proper namespace.
+ * @param {string} tag 
+ */
+var createSVGElement = exports.createSVGElement = function createSVGElement(tag) {
+  var svgns = 'http://www.w3.org/2000/svg';
+  // let xlinkns = 'http://www.w3.org/1999/xlink';
+
+  return document.createElementNS(svgns, tag);
+};
 
 /***/ })
 /******/ ]);
