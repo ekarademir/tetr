@@ -1,6 +1,6 @@
 'use strict';
 
-import {createSVGElement} from './svg';
+import * as svg from './svg';
 
 /**
  * Adds game screen to given DOM element.
@@ -21,13 +21,20 @@ export let setup = (mainSelector) => {
  */
 let mainScreen = (mainElement) => {
 
-  let svg = createSVGElement('svg', {
+  let canvas = svg.createSVGElement('svg', {
     width: '100%',
     height: '100%',
     preserveAspectRatio: 'xMinYMin',
-    viewBox: '400, 300, 400, 300'
+    viewBox: '0, 0, 400, 300'
   });
 
-  mainElement.appendChild(svg);
+  let box = svg.rect(10, 10, 100, 100);
+
+  svg.fill(box, '#EE9999');
+  svg.stroke(box, 'black', 3);
+
+  canvas.appendChild(box);
+
+  mainElement.appendChild(canvas);
 
 };
