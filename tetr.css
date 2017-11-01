@@ -49,17 +49,13 @@ table {
 
 /*## TETR PART #########################################*/
 
-body {
-	font-family: Arial, Helvetica, sans-serif;
-}
-
-h1 {
-	font-size: 400%;
-	letter-spacing: -0.06em;
-	font-weight: 800;
-}
-
-.main {
+.tetr {
 	display: block;
-	height: 90vh;
+}
+
+.tetr #tcanvas {
+	border-color: rgba(0,0,0,0.7);
+	border-style: solid;
+	border-width: 1px;
+	touch-action: none;
 }
